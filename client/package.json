@@ -1,0 +1,22 @@
+{
+  "name": "leia-client",
+  "version": "1.0.0",
+  "description": "This is the client application for the leia tool.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "nats"
+  ],
+  "author": "YashMeh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10",
+    "nats": "^1.4.8"
+  }
+}
