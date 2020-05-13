@@ -1,7 +1,22 @@
 const NATS = require("nats");
-const nc = NATS.connect("nats://0.0.0.0:4222");
+const nc = NATS.connect(process.env.NATS_SERVER);
 const chalk = require("chalk");
-
+const emoji = require("node-emoji");
+nc.on("connect", () => {
+  console.log(
+    chalk.green(
+      `Connection to nats-server successfull ${emoji.get("white_check_mark")}`
+    )
+  );
+});
+nc.on("error", (err) => {
+  console.log(
+    chalk.redBright(
+      `Error connecting to nats-server ${emoji.get("heavy_exclamation_mark")}`
+    )
+  );
+  console.log(chalk.redBright(`${err}`));
+});
 const { spawn } = require("child_process");
 const { interfaceParser } = require("./query-parser");
 const PROT_TO_PORT = {

@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
-
-# NOTE: This will let anyone who belongs to the 'pcap' group
-# execute 'tcpdump'
-
-# NOTE2: User running the script MUST be a sudoer. It is
-# convenient to be able to sudo without a password.
+# This will create a group 'pcap' and will let the $USER
+# execute 'tcpdump' without sudo priviledges
+# Source: https://gist.github.com/zapstar/3d2ff4f345b43ce7918889053503ef84 
 
 sudo groupadd pcap
 sudo usermod -a -G pcap $USER
