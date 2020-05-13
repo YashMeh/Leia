@@ -9,12 +9,12 @@ The aim of the project is to easily monitor packets for different protocols(HTTP
 ---
 ### Architecture
 
-![Leia Architecture]("https://github.com/YashMeh/Leia/raw/master/assets/leia-arch.png")
+![Leia Architecture](https://github.com/YashMeh/Leia/raw/master/assets/leia-arch.png)
 
 ---
 ### Requirements
 
-- [nats-server]("https://github.com/nats-io/nats-server")
+- [nats-server](https://github.com/nats-io/nats-server)
 - [node](https://nodejs.org/en/download/)
 - [tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html)
 - [pm2](https://pm2.keymetrics.io/)
@@ -74,11 +74,11 @@ const PROT_TO_PID = {
 ---
 ### Work left
 
--[X] Capture packets in real time and pipeline to a messaging queue.
+- [X] Capture packets in real time and pipeline to a messaging queue.
 
--[ ] Visualise the traffic using a react-redux administration app.
+- [ ] Visualise the traffic using a react-redux administration app.
 
--[ ] Automatically detect and prevent malicious attacks(probably using SNORT)
+- [ ] Automatically detect and prevent malicious attacks(probably using SNORT)
 
 ---
 ### Testing Locally
