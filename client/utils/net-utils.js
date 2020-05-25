@@ -78,7 +78,7 @@ const startDumping = (prot) => {
     //console.log("Start", PROT_TO_PID);
   });
   child.stdout.on("data", (data) => {
-    nc.publish(`${prot}`, `${data}`);
+    nc.publish("packets", `${process.env.name}^*^*^${prot}^*^*^${data}`);
   });
   return "started";
 };

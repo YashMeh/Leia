@@ -18,7 +18,7 @@ class DataTable extends Component {
           <tr onClick={this.handleClick}>
             <th>#</th>
             <th>Device Name</th>
-            <th colSpan="6">Protocols</th>
+            <th colSpan="6">Packets</th>
           </tr>
         </thead>
         <tbody>

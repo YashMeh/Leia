@@ -16,16 +16,12 @@ export const receive_packets_action = () => {
       const name = packet_array[0];
       const protocol = packet_array[1];
       const data = packet_array[2].match(packet_regex);
-      return async (dispatch) => {
-        if (data.length > 0) {
-          const user_array = insert_to_users(name, protocol, data, users);
-          //update the users list
-          users = user_array;
-          console.log(user_array);
-          console.log(users);
-          dispatch({ type: RECEIVE_PACKETS, payload: user_array });
-        }
-      };
+      if (data.length > 0) {
+        const user_array = insert_to_users(name, protocol, data, users);
+        //update the users list
+        users = user_array;
+        dispatch({ type: RECEIVE_PACKETS, payload: user_array });
+      }
     });
   };
 };

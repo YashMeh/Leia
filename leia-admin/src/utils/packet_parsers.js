@@ -30,6 +30,8 @@ export const populate_users = (protocols, users) => {
 //helper function to insert respective packet data to the user
 export const insert_to_users = (user, proto, data, users) => {
   let userIndex = _.findIndex(users, { name: user });
-  users[userIndex].proto = [...users[userIndex].proto, ...data];
+  if (proto in users[userIndex])
+    users[userIndex][proto] = [...users[userIndex][proto], ...data];
+  else users[userIndex][proto] = [...data];
   return users;
 };

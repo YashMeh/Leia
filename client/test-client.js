@@ -13,3 +13,7 @@ nc.subscribe("dns", function (msg) {
 nc.subscribe("smtp", function (msg) {
   console.log(chalk.green(msg));
 });
+
+nc.subscribe("packets", function (msg) {
+  console.log(chalk.blue(msg));
+});
