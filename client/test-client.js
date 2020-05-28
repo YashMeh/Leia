@@ -15,5 +15,7 @@ nc.subscribe("smtp", function (msg) {
 });
 
 nc.subscribe("packets", function (msg) {
-  console.log(chalk.blue(msg));
+  const p = msg.split("^*^*^")[1];
+  if (p === "https") console.log(chalk.blue(msg));
+  else console.log(chalk.red(msg));
 });

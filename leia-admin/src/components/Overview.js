@@ -1,11 +1,10 @@
 import React from "react";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "shards-react";
 import DataTable from "./DataTable";
-
 class Overview extends React.Component {
   render() {
     return (
-      <Card>
+      <Card style={{ backgroundColor: "#dbd7d7" }}>
         <CardBody>
           <CardTitle>Overview</CardTitle>
           <Container>

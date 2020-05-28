@@ -1,8 +1,6 @@
-/* .wrapper {
-  background-color: aqua;
-  height: 100%;
-} */
-
+.outer-body {
+  background-color: #635a5a;
+}
 .container {
   padding: 2%;
 }

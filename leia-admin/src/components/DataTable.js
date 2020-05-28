@@ -3,6 +3,8 @@ import { Table } from "reactstrap";
 import { connect } from "react-redux";
 import { receive_packets_action } from "../_actions/Receivers";
 import "./DataTable.css";
+import DataRow from "./DataRow";
+import { v4 as uuidv4 } from "uuid";
 class DataTable extends Component {
   handleClick = (e) => {
     console.log(e);
@@ -32,16 +34,9 @@ class DataTable extends Component {
             <th>SSH</th>
             <th>SMTP</th>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Dummy</td>
-            <td>{this.props.https}</td>
-            <td>HTTP</td>
-            <td>DNS</td>
-            <td>FTP</td>
-            <td>SSH</td>
-            <td>SMTP</td>
-          </tr>
+          {this.props.list.map((item, index) => (
+            <DataRow index={index} item={item} key={`${uuidv4()}`} />
+          ))}
         </tbody>
       </Table>
     );

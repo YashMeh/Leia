@@ -35,3 +35,37 @@ export const insert_to_users = (user, proto, data, users) => {
   else users[userIndex][proto] = [...data];
   return users;
 };
+
+//helper function to get timestamp and data-length
+export const time_date_both = (data) => {
+  var arr = data.split(" ");
+  var dd = new Date(new Date(arr[0] + " " + arr[1])).getTime();
+  return [dd, Number(arr[arr.length - 1])];
+};
+
+export const get_time_data = (date_length, length_only, recentTime) => {
+  return new Promise((resolve, reject) => {
+    if (date_length === null && length_only === null) resolve([]);
+    else if (length_only === null) {
+      var res = [];
+      date_length.forEach((item, index) => {
+        res.push(time_date_both(item));
+        if (index === date_length.length - 1) resolve(res);
+      });
+    } else {
+      var res = [];
+      date_length.forEach((item, index) => {
+        res.push(time_date_both(item));
+      });
+      var remaining = length_only.length - date_length.length;
+      if (remaining <= 0) resolve(res);
+      var x = length_only.length - 1;
+      while (remaining--) {
+        var arr = length_only[x].split(" ");
+        res.push([recentTime, Number(arr[1])]);
+        x--;
+        if (remaining === 0) resolve(res);
+      }
+    }
+  });
+};

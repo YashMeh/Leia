@@ -69,7 +69,7 @@ const startDumping = (prot) => {
   if (!(prot in PROT_TO_PID)) return "Not supported";
   else if (PROT_TO_PID[prot] !== -1) return "already running";
   //console.log(PROT_TO_PORT[prot]);
-  const child = spawn(`tcpdump -i any port ${PROT_TO_PORT[prot]}`, {
+  const child = spawn(`tcpdump -i any port ${PROT_TO_PORT[prot]} -tttt`, {
     shell: true,
   });
   fetchPid().then((pid) => {
