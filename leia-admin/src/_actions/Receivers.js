@@ -14,7 +14,10 @@ const data_length_regex = new RegExp(
 const only_length = new RegExp("length [0-9]");
 var nc = require("websocket-nats").connect("ws://localhost:4223");
 
-var users = [{ name: "dum", key: "dum-key" }];
+var users = [
+  { name: "home-system", key: "dum-key" },
+  { name: "aws253", key: "dum-key" },
+];
 //const protocols = ["https", "http", "dns", "ftp", "ssh", "smtp"];
 
 //populate_users(protocols, users);

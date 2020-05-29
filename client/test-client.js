@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const NATS = require("nats");
 const nc = NATS.connect(process.env.NATS_SERVER);
 const chalk = require("chalk");

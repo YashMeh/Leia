@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const NATS = require("nats");
 const nc = NATS.connect(process.env.NATS_SERVER);
 const chalk = require("chalk");
@@ -78,7 +80,7 @@ const startDumping = (prot) => {
     //console.log("Start", PROT_TO_PID);
   });
   child.stdout.on("data", (data) => {
-    nc.publish("packets", `${process.env.name}^*^*^${prot}^*^*^${data}`);
+    nc.publish("packets", `${process.env.device}^*^*^${prot}^*^*^${data}`);
   });
   return "started";
 };
