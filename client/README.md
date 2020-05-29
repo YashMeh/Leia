@@ -1,9 +1,10 @@
 #### Configuring
-- Create a .env inside client directory and give the NATS_SERVER
+- Create a .env inside client directory and give the NATS_SERVER and device environment variables
 
 Example if you want to run locally.
 ```
 NATS_SERVER=nats://0.0.0.0:4222
+device=home-system
 ```
 ---
 #### Installation
