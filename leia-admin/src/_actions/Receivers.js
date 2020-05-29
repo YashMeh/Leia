@@ -41,6 +41,8 @@ export const receive_time_data_action = () => {
   return async (dispatch) => {
     nc.subscribe("packets", (packet) => {
       const packet_array = packet.split("^*^*^");
+      //this is the name of the device
+      const name = packet_array[0];
       //this is the data packet of array
       const data = packet_array[2];
       //set recent time in case packet contains only length
@@ -67,7 +69,10 @@ export const receive_time_data_action = () => {
       //   console.log(length_only);
       get_time_data(date_time, length_only, recentTime).then((fullArray) => {
         //console.log(fullArray);
-        dispatch({ type: RECEIVE_DATA, payload: fullArray });
+        dispatch({
+          type: RECEIVE_DATA,
+          payload: { date_length: fullArray, name: name },
+        });
       });
     });
   };

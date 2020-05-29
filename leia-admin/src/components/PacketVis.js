@@ -38,7 +38,7 @@ class PacketVis extends React.Component {
     return (
       <Card style={{ backgroundColor: "#dbd7d7" }}>
         <CardBody>
-          <CardTitle>Distribution</CardTitle>
+          <CardTitle>Packet Distribution</CardTitle>
           {device === null ? (
             <div>Select a device</div>
           ) : (

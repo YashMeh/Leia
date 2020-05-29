@@ -52,11 +52,21 @@ export const get_time_data = (date_length, length_only, recentTime) => {
         res.push(time_date_both(item));
         if (index === date_length.length - 1) resolve(res);
       });
+    } else if (date_length === null) {
+      var remaining = length_only.length;
+      var x = length_only.length - 1;
+      while (remaining--) {
+        var arr = length_only[x].split(" ");
+        res.push([recentTime, Number(arr[1])]);
+        x--;
+        if (remaining === 0) resolve(res);
+      }
     } else {
       var res = [];
       date_length.forEach((item, index) => {
         res.push(time_date_both(item));
       });
+
       var remaining = length_only.length - date_length.length;
       if (remaining <= 0) resolve(res);
       var x = length_only.length - 1;

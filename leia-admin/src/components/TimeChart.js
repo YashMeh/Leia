@@ -21,22 +21,26 @@ class TimeChart extends React.Component {
   };
   state = { tracker: null };
   render() {
-    const { device, time_data } = this.props;
-    time_data.sort((a, b) => {
+    const date_length =
+      this.props.device !== null && this.props.device.date_length.length > 0
+        ? this.props.device.date_length
+        : [[new Date().getTime(), 0]];
+
+    date_length.sort((a, b) => {
       return a[0] - b[0];
     });
-    console.log(time_data);
+    console.log(date_length);
     const data = {
       name: "traffic",
       columns: ["time", "in"],
-      points: time_data,
+      points: date_length,
     };
     const trafficSeries = new TimeSeries(data);
-    time_data.sort((a, b) => {
+    date_length.sort((a, b) => {
       return b[1] - a[1];
     });
 
-    const maxe = time_data[0][1];
+    const maxe = date_length[0][1];
     console.log(trafficSeries);
     const upDownStyle = styler([
       { key: "in", color: "#0c9463" },
@@ -46,33 +50,38 @@ class TimeChart extends React.Component {
       <Card style={{ backgroundColor: "#dbd7d7" }}>
         <CardBody>
           <CardTitle>Total Traffic (bps)</CardTitle>
-          <Resizable>
-            <ChartContainer
-              timeRange={trafficSeries.timerange()}
-              width={1080}
-              trackerPosition={this.state.tracker}
-              onTrackerChanged={this.handleTrackerChanged}
-            >
-              <ChartRow height={150}>
-                <Charts>
-                  <AreaChart
-                    axis="traffic"
-                    series={trafficSeries}
-                    columns={{ up: ["in"] }}
-                    style={upDownStyle}
+
+          {this.props.device === null ? (
+            <div>Select a device</div>
+          ) : (
+            <Resizable>
+              <ChartContainer
+                timeRange={trafficSeries.timerange()}
+                width={1080}
+                trackerPosition={this.state.tracker}
+                onTrackerChanged={this.handleTrackerChanged}
+              >
+                <ChartRow height={150}>
+                  <Charts>
+                    <AreaChart
+                      axis="traffic"
+                      series={trafficSeries}
+                      columns={{ up: ["in"] }}
+                      style={upDownStyle}
+                    />
+                  </Charts>
+                  <YAxis
+                    id="traffic"
+                    label="Traffic (bps)"
+                    max={maxe}
+                    absolute={true}
+                    width="60"
+                    type="linear"
                   />
-                </Charts>
-                <YAxis
-                  id="traffic"
-                  label="Traffic (bps)"
-                  max={maxe}
-                  absolute={true}
-                  width="60"
-                  type="linear"
-                />
-              </ChartRow>
-            </ChartContainer>
-          </Resizable>
+                </ChartRow>
+              </ChartContainer>
+            </Resizable>
+          )}
         </CardBody>
       </Card>
     );
@@ -81,7 +90,6 @@ class TimeChart extends React.Component {
 const map_state_to_prop = (state) => {
   return {
     device: state.packet.selected_device,
-    time_data: state.packet.time_data,
   };
 };
 export default connect(map_state_to_prop, { receive_time_data_action })(
